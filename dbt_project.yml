@@ -42,5 +42,3 @@ vars:
 
     # variable to disable the filter within invoice line item
     using_invoice_line_sub_filter: True
-
-    table_prefix: ""

@@ -12,7 +12,8 @@ sources:
       error_after: { count: 168, period: hour }
 
     tables:
-      - name: stripe_balance_transaction
+      - name: balance_transaction
+        identifier: "{{var ('table_prefix', '')}}"balance_transaction
         description: Balance transactions represent funds moving through your Stripe account. They're created for every type of transaction that comes into or flows out of your Stripe account balance.
         columns:
           - name: id
@@ -40,7 +41,8 @@ sources:
           - name: type
             description: the type of transaction.  Possible values are adjustment, advance, advance_funding, application_fee, application_fee_refund, charge, connect_collection_transfer, issuing_authorization_hold, issuing_authorization_release, issuing_dispute, issuing_transaction, payment, payment_failure_refund, payment_refund, payout, payout_cancel, payout_failure, refund, refund_failure, reserve_transaction, reserved_funds, stripe_fee, stripe_fx_fee, tax_fee, topup, topup_reversal, transfer, transfer_cancel, transfer_failure, or transfer_refund.
 
-      - name: stripe_card
+      - name: card
+        identifier: "{{var ('table_prefix', '')}}"balance_transaction
         description: details of a credit card that has been saved to the system.
         columns:
           - name: id
@@ -60,7 +62,8 @@ sources:
           - name: funding
             description: Card funding type. Can be credit, debit, prepaid, or unknown.
 
-      - name: stripe_charge
+      - name: charge
+        identifier: "{{var ('table_prefix', '')}}"balance_transaction
         description: To charge a credit or a debit card, you create a Charge object. You can retrieve and refund individual charges as well as list all charges. Charges are identified by a unique, random ID.
         columns:
           - name: id
@@ -110,7 +113,8 @@ sources:
           - name: livemode
             description: Indicates if this is a test charge.
 
-      - name: stripe_customer
+      - name: customer
+        identifier: "{{var ('table_prefix', '')}}"balance_transaction
         description: Customer objects allow you to perform recurring charges, and to track multiple charges, that are associated with the same customer.
         freshness: null
         columns:
@@ -149,7 +153,8 @@ sources:
           - name: livemode
             description: Indicates if this is a test customer.
 
-      - name: stripe_fee
+      - name: fee
+        identifier: "{{var ('table_prefix', '')}}"balance_transaction
         description: The details of a fee associated with a balance_transaction
         columns:
           - name: balance_transaction_id
@@ -165,7 +170,8 @@ sources:
           - name: type
             description: Type of the fee, can be application_fee, stripe_fee or tax.
 
-      - name: stripe_payment_intent
+      - name: payment_intent
+        identifier: "{{var ('table_prefix', '')}}"balance_transaction
         description: A Payment Intent guides you through the process of collecting a payment from your customer.
         freshness: null
         columns:
@@ -208,7 +214,8 @@ sources:
           - name: livemode
             description: Indicates if this is a test payment intent.
 
-      - name: stripe_payment_method_card
+      - name: payment_method_card
+        identifier: "{{var ('table_prefix', '')}}"balance_transaction
         description: Table with the relationships between a payment methods and a card
         columns:
           - name: payment_method_id
@@ -218,7 +225,8 @@ sources:
           - name: funding
             description: Card funding type. Can be credit, debit, prepaid, or unknown.
 
-      - name: stripe_payment_method
+      - name: payment_method
+        identifier: "{{var ('table_prefix', '')}}"balance_transaction
         description: PaymentMethod objects represent your customer's payment instruments. They can be used with PaymentIntents to collect payments or saved to Customer objects to store instrument details for future payments.
         freshness: null
         columns:
@@ -235,7 +243,8 @@ sources:
           - name: livemode
             description: Indicates if this is a test payment method.
 
-      - name: stripe_payout
+      - name: payout
+        identifier: "{{var ('table_prefix', '')}}"balance_transaction
         description: A Payout object is created when you receive funds from Stripe, or when you initiate a payout to either a bank account or debit card of a connected Stripe account.
         columns:
           - name: id
@@ -267,7 +276,8 @@ sources:
           - name: livemode
             description: Indicates if this is a test payout.
  
-      - name: stripe_refund
+      - name: refund
+        identifier: "{{var ('table_prefix', '')}}"balance_transaction
         description: Details of transactions that have been refunded
         freshness: null
         columns:
@@ -294,7 +304,8 @@ sources:
           - name: status
             description: Status of the refund. For credit card refunds, this can be pending, succeeded, or failed. For other types of refunds, it can be pending, succeeded, failed, or canceled.
 
-      - name: stripe_invoice_line_item
+      - name: invoice_line_item
+        identifier: "{{var ('table_prefix', '')}}"balance_transaction
         description: The different items that an invoice contains
         freshness: null
         columns:
@@ -327,7 +338,8 @@ sources:
           - name: livemode
             description: Indicates if this is a test invoice line item.
 
-      - name: stripe_invoice
+      - name: invoice
+        identifier: "{{var ('table_prefix', '')}}"balance_transaction
         description: Invoices are statements of amounts owed by a customer, and are either generated one-off, or generated periodically from a subscription.
         freshness: null
         columns:
@@ -378,7 +390,8 @@ sources:
           - name: livemode
             description: Indicates if this is a test invoice.
 
-      - name: stripe_subscription
+      - name: subscription
+        identifier: "{{var ('table_prefix', '')}}"balance_transaction
         description: Subscriptions allow you to charge a customer on a recurring basis.
         freshness: null
         columns:
@@ -415,7 +428,8 @@ sources:
           - name: livemode
             description: Indicates if this is a test subscription.
 
-      - name: stripe_plan
+      - name: plan
+        identifier: "{{var ('table_prefix', '')}}"balance_transaction
         description: Plans define the base price, currency, and billing cycle for recurring purchases of products.
         freshness: null
         columns:
@@ -440,7 +454,8 @@ sources:
           - name: livemode
             description: Indicates if this is a test plan.
 
-      - name: stripe_credit_note
+      - name: credit_note
+        identifier: "{{var ('table_prefix', '')}}"balance_transaction
         description: Credit notes are documents that decrease the amount owed on an invoice. They’re the only way to adjust the amount of a finalized invoice other than voiding and recreating the invoice.
         freshness: null
         columns:
@@ -483,7 +498,8 @@ sources:
           - name: refund_id
             description: The id of the refund associated with this credit note.
 
-      - name: stripe_credit_note_line_item
+      - name: credit_note_line_item
+        identifier: "{{var ('table_prefix', '')}}"balance_transaction
         description: The different items that a credit note contains.
         freshness: null
         columns:

@@ -34,7 +34,6 @@ final as (
         created as created_at,
         customer_id,
         name,
-        recipient,
         funding
     from fields
 )

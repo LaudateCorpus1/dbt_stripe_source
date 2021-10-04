@@ -42,7 +42,7 @@ sources:
             description: the type of transaction.  Possible values are adjustment, advance, advance_funding, application_fee, application_fee_refund, charge, connect_collection_transfer, issuing_authorization_hold, issuing_authorization_release, issuing_dispute, issuing_transaction, payment, payment_failure_refund, payment_refund, payout, payout_cancel, payout_failure, refund, refund_failure, reserve_transaction, reserved_funds, stripe_fee, stripe_fx_fee, tax_fee, topup, topup_reversal, transfer, transfer_cancel, transfer_failure, or transfer_refund.
 
       - name: card
-        identifier: "{{var ('table_prefix', '')}}cards"
+        identifier: "{{var ('table_prefix', '')}}charges_source"
         description: details of a credit card that has been saved to the system.
         columns:
           - name: id
@@ -57,8 +57,6 @@ sources:
             description: The customer that this card belongs to.  NULL if belongs to an account or recipient.
           - name: name
             description: Cardholder name
-          - name: recipient
-            description: The recipient that this card belongs to. NULL if the card belongs to a customer or account instead.
           - name: funding
             description: Card funding type. Can be credit, debit, prepaid, or unknown.
 
@@ -154,7 +152,7 @@ sources:
             description: Indicates if this is a test customer.
 
       - name: fee
-        identifier: "{{var ('table_prefix', '')}}fees"
+        identifier: "{{var ('table_prefix', '')}}balance_transactions_fee_details"
         description: The details of a fee associated with a balance_transaction
         columns:
           - name: balance_transaction_id
@@ -215,7 +213,7 @@ sources:
             description: Indicates if this is a test payment intent.
 
       - name: payment_method_card
-        identifier: "{{var ('table_prefix', '')}}payment_method_cards"
+        identifier: "{{var ('table_prefix', '')}}charges_payment_method_details_card"
         description: Table with the relationships between a payment methods and a card
         columns:
           - name: payment_method_id
@@ -226,7 +224,7 @@ sources:
             description: Card funding type. Can be credit, debit, prepaid, or unknown.
 
       - name: payment_method
-        identifier: "{{var ('table_prefix', '')}}payment_methods"
+        identifier: "{{var ('table_prefix', '')}}charges_payment_method_details"
         description: PaymentMethod objects represent your customer's payment instruments. They can be used with PaymentIntents to collect payments or saved to Customer objects to store instrument details for future payments.
         freshness: null
         columns:

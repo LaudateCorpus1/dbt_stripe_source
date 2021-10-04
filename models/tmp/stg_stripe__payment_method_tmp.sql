@@ -2,5 +2,3 @@
 
 select * 
 from {{ var('payment_method') }}
-
-{{ livemode_predicate() }}

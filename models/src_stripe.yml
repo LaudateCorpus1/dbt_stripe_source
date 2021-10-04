@@ -238,8 +238,6 @@ sources:
             description: Custom metadata added to the record, in JSON string format
           - name: type
             description: The type of the PaymentMethod. An additional hash is included on the PaymentMethod with a name matching this value. It contains additional information specific to the PaymentMethod type.
-          - name: livemode
-            description: Indicates if this is a test payment method.
 
       - name: payout
         identifier: "{{var ('table_prefix', '')}}payouts"
